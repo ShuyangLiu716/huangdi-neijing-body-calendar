@@ -1,0 +1,8 @@
+interface:
+  display_name: "黄帝内经身体日历"
+  short_description: "生成成都气候适配的每日中医养生作息、饮食和运动建议。"
+  brand_color: "#2F6B4F"
+  default_prompt: "Use $huangdi-neijing-body-calendar to create today's Chengdu-aware Chinese body calendar with conservative lifestyle, diet, movement, self-check, and source notes."
+
+policy:
+  allow_implicit_invocation: true
