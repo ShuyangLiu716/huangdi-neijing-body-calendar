@@ -58,7 +58,21 @@ The repo-level `README.md` explains usage for humans. The actual skill lives und
 
 ## Install
 
-Clone the repository, then copy the skill folder into your Codex skills directory:
+Recommended: ask Codex to install the skill from this GitHub repo path:
+
+```text
+Use $skill-installer to install ShuyangLiu716/huangdi-neijing-body-calendar from path skills/huangdi-neijing-body-calendar.
+```
+
+If you are running the local skill installer script directly:
+
+```powershell
+python "$env:CODEX_HOME\skills\.system\skill-installer\scripts\install-skill-from-github.py" --repo ShuyangLiu716/huangdi-neijing-body-calendar --path skills/huangdi-neijing-body-calendar
+```
+
+After installation, restart Codex so the new skill is picked up.
+
+Manual fallback: clone the repository, then copy the skill folder into your Codex skills directory:
 
 ```powershell
 git clone https://github.com/ShuyangLiu716/huangdi-neijing-body-calendar.git
