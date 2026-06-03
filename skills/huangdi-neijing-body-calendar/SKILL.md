@@ -1,83 +1,141 @@
 ---
 name: huangdi-neijing-body-calendar
-description: Use this skill when creating a Chinese "中医身体日历" daily wellness guide, Huangdi Neijing inspired lifestyle guidance, Chengdu/Sichuan climate-aware seasonal TCM self-check prompts, or conservative non-diagnostic wellness screening that combines classical Chinese medicine sources with modern physical activity guidance.
+description: 生成每日中医身体日历——结合《黄帝内经》四时养生、现代运动科学和本地天气，给出今天你能照着做的作息、饮食、运动、情志建议。
 ---
 
-# Huangdi Neijing Body Calendar
+# 黄帝内经身体日历
 
-Use this skill to create a daily "中医身体日历": conservative lifestyle guidance inspired by the Huangdi Neijing, grounded in traceable sources, and cross-checked against modern physical activity guidance.
+**做什么**：生成一份接地气的「每日身体日历」，告诉你今天该怎么睡、怎么吃、怎么动、哪里要小心。
 
-This skill is for wellness education and self-checking only. It must not diagnose disease, prescribe herbs, replace clinicians, or claim treatment effects.
+**不做什么**：不诊断疾病、不开药方、不做吉凶判断、不替代医生。
 
-## Core Defaults
+---
 
-- Write in Chinese unless the user asks otherwise.
-- Assume a general adult audience in Chengdu, Sichuan unless the user gives another location.
-- For Chengdu defaults, account for Sichuan Basin climate: humid, cloudy/foggy, relatively low sunshine, low wind, rainy-season heat and dampness, and indoor/outdoor activity constraints.
-- Ask or infer a different location only when the user explicitly says they are outside Chengdu or travel today.
-- Assume a general adult audience unless the user provides age, pregnancy status, medical conditions, pain, sleep problems, medications, or exercise history.
-- Treat "黄历" as a metaphor for daily rhythm, not fortune telling. Do not produce auspicious/inauspicious claims.
-- Prefer conservative advice: regular sleep, moderate meals, daylight exposure, walking, mobility, breathing, and reduced sedentary time.
-- Every substantive daily guide must include an "依据" section with source categories.
-- If medical risk appears, reduce intensity, avoid specific therapeutic claims, and recommend professional evaluation.
+## 核心原则
 
-## Workflow
+1. **养生教育，不是医疗诊断**——给建议，不给结论
+2. **结合本地天气**——你在成都和在北京，建议不一样
+3. **跟着节气走**——春生夏长秋收冬藏，不是每天一套
+4. **保守安全**——默认中低强度，宁可少动不要受伤
+5. **有据可查**——每条建议标注来源（经典/规范/科学/气象）
 
-1. **Identify the calendar context**
-   - Use the user's stated date and location if provided.
-   - If no location is provided, default to Chengdu, Sichuan.
-   - If no date is provided, use today's date from the environment.
-   - If precise solar term data is unavailable, say "节气需按当地历法核对" and use season-level guidance.
-   - For exact weather, air quality, rainfall, temperature, or humidity, use current official weather data when available; otherwise label the local climate guidance as climate-level rather than live weather.
+---
 
-2. **Screen for safety**
-   - Check whether the user mentions pain, chest symptoms, fainting, fever, acute injury, pregnancy, chronic disease, recent surgery, or medication changes.
-   - Read `references/safety-boundary.md` before answering medical-risk or pain-related prompts.
-   - Ask only the minimum necessary follow-up if a red flag would change whether movement is appropriate.
+## 默认设置
 
-3. **Select the evidence layer**
-   - Read `references/source-policy.md` when adding or checking citations.
-   - Use Huangdi Neijing concepts for rhythm, season, moderation, emotion, and daily conduct.
-   - Use official TCM wellness service rules for scope boundaries.
-   - Use WHO and ACSM-style exercise guidance for intensity, duration, sedentary breaks, and risk screening.
-   - Use official meteorological sources for Chengdu climate context before making location-specific claims.
+- **默认城市**：成都，四川（用户说其他城市则替换）
+- **默认人群**：成年人（用户说年龄、身体情况则调整）
+- **默认语言**：中文（用户说英文则切换）
+- **默认强度**：中低强度运动（用户要高强度则单独给）
 
-4. **Generate the daily guide**
-   - Follow `references/daily-calendar-template.md` for structure.
-   - Include: 今日主题, 今日宜, 今日不宜, 作息, 饮食, 运动, 情志, 问诊自查, 风险提醒, 依据.
-   - Keep recommendations specific enough to act on but not clinical enough to become diagnosis or prescription.
+---
 
-5. **Adapt to personal context**
-   - For Chengdu humid or rainy days: reduce heat-stress exposure, keep movement ventilated and moderate, emphasize drying clothes/shoes, warm regular meals, and indoor walking/mobility alternatives.
-   - For Chengdu low-sunlight or cloudy days: encourage morning outdoor light exposure when weather allows, while avoiding claims that light exposure treats disease.
-   - For sleep complaints: emphasize light exposure, caffeine/alcohol timing, wind-down routine, gentle movement, and referral if severe or persistent.
-   - For pain: avoid high-impact or painful movement, suggest gentle range-of-motion or walking only if tolerated, and include red-flag guidance.
-   - For sedentary users: start with low volume and frequent breaks.
-   - For trained users: keep moderate daily guidance unless the user asks for a training plan.
+## 工作流程
 
-## Output Rules
+### 第1步：确认上下文
 
-- Do not provide disease names as conclusions from symptoms.
-- Do not prescribe herbs, formulas, acupuncture points, moxibustion operations, cupping, scraping, or medical devices.
-- Do not claim that a food, exercise, or routine treats or prevents a disease.
-- Do not use mystical certainty, fortune telling, or "吉凶" language.
-- Use clear uncertainty: "可作为养生参考", "如有明显不适应就医", "不能替代医生诊疗".
+- **日期**：用用户说的日期，没说就用今天的
+- **地点**：用用户说的城市，没说就用成都
+- **身体情况**：用户提到膝盖疼、失眠、产后等，要调整建议
+- **天气**：如果有工具查天气就用实时数据，没有就用"成都气候特点"
 
-## References
+### 第2步：安全筛查
 
-- Read `references/source-policy.md` for accepted source tiers and citation wording.
-- Read `references/daily-calendar-template.md` for the standard daily calendar format.
-- Read `references/safety-boundary.md` before handling symptoms, pain, chronic disease, pregnancy, older adults, children, or exercise-risk prompts.
+用户提到以下情况，要先处理安全问题：
+- 胸痛、胸闷、严重呼吸困难、头晕
+- 高烧、急性疼痛、受伤
+- 孕期、产后、慢性病
+- 不明原因的身体不适
 
-## Regional Customization
+**处理方式**：先说"这不是诊断"，再给保守建议，最后建议就医。
 
-The initial version is tuned for Chengdu, Sichuan. To adapt it for another region:
+详见 `references/safety-boundary.md`
 
-- Replace the default location in this file and `references/daily-calendar-template.md`.
-- Add official meteorological sources for the target city to `references/source-policy.md`.
-- Translate local climate traits into behavior-level guidance: sleep/light exposure, meal timing, hydration, indoor/outdoor exercise alternatives, heat/cold/rain precautions.
-- Keep the same safety boundary. Regional customization must not add diagnosis, prescriptions, treatment claims, or folk remedies without authoritative support.
+### 第3步：选择证据
 
-## Quality Bar
+- **节气/作息/情志** → 《黄帝内经》四时养生思想
+- **安全边界** → 国家中医药管理局养生保健服务规范
+- **运动建议** → WHO/ACSM 身体活动指南
+- **本地天气** → 中国气象局/中国天气网
 
-A successful answer is structured, actionable, sourced, conservative, and visibly non-diagnostic. It should help the user decide how to arrange today, not decide what disease they have or what treatment they need.
+详见 `references/source-policy.md`
+
+### 第4步：生成日历
+
+按模板生成，包含9个模块：
+
+1. **今日主题**（一句话：节气+天气+核心建议）
+2. **今日宜**（1-3条正向行为）
+3. **今日不宜**（1-3条行为提醒）
+4. **作息**（早/午/晚具体建议）
+5. **饮食**（食物类别、进食时间、饮水）
+6. **运动**（强度、时间、形式、替代方案）
+7. **情志**（1-2条情绪调节建议）
+8. **问诊自查**（5个非诊断性问题）
+9. **风险提醒**（红旗症状+就医提示）
+10. **依据**（来源分类+链接）
+
+详见 `references/daily-calendar-template.md`
+
+### 第5步：个性化调整
+
+根据用户情况调整：
+
+| 用户情况 | 调整重点 |
+|----------|----------|
+| 成都湿热天 | 减少户外、强调通风、清淡饮食 |
+| 成都阴雨天 | 室内运动替代、衣物干燥 |
+| 睡眠问题 | 光照、咖啡因时间、睡前routine |
+| 膝盖/关节疼 | 避免跑跳、只给温和活动 |
+| 久坐人群 | 从低量开始、频繁打断久坐 |
+| 产后恢复 | 温和渐进、建议专业评估 |
+
+---
+
+## 输出规则
+
+### 必须做
+
+- 用中文（除非用户要英文）
+- 建议具体可执行（"快走30分钟"而不是"适量运动"）
+- 保守安全（宁可少动不要受伤）
+- 标注依据来源
+- 出现风险时建议就医
+
+### 不能做
+
+- 不诊断疾病（"你这是湿气重"）
+- 不开药方（"喝这个汤"）
+- 不推荐针灸/艾灸/拔罐/刮痧操作
+- 不做吉凶判断（"今天宜出行"）
+- 不承诺治疗效果（"坚持做就能好"）
+- 不引用未经证实的偏方
+
+### 语气
+
+- 平和、实用、不玄学
+- 用"建议"、"可以"、"避免"，不用"必须"、"一定要"
+- 不过度解释理论，除非用户问
+
+---
+
+## 参考文件
+
+- `references/daily-calendar-template.md` — 输出模板
+- `references/safety-boundary.md` — 安全边界和红旗症状
+- `references/source-policy.md` — 来源策略和引用规则
+
+---
+
+## 地区定制
+
+要改成其他城市：
+
+1. 修改本文件的"默认城市"
+2. 修改 `daily-calendar-template.md` 的位置信息
+3. 在 `source-policy.md` 加入该城市的气象来源
+
+**只能改气候和生活方式建议，不能加入：**
+- 未经证实的偏方
+- 地区特有的"养生禁忌"（除非有权威来源）
+- 诊断性结论
