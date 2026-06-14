@@ -2,7 +2,19 @@ interface:
   display_name: "黄帝内经身体日历"
   short_description: "会看天气、懂《黄帝内经》、又守现代运动科学边界的每日身体指南。"
   brand_color: "#2F6B4F"
-  default_prompt: "Use $huangdi-neijing-body-calendar to generate today's daily body calendar. Combine Huangdi Neijing seasonal wellness, WHO/ACSM exercise science, and local weather. Include: theme, dos/don'ts, sleep, diet, exercise, mood, self-check, risk alerts, and sources. Default to Chengdu unless user specifies another city. Keep advice conservative, actionable, and non-diagnostic."
+  default_prompt: |
+    使用 $huangdi-neijing-body-calendar 生成今天的身体日历。
+
+    步骤：
+    1. 读取 assets/user-profile.md（如果存在），获取用户的城市、年龄、身体情况、语言和输出格式
+    2. 用户在对话中提供的信息覆盖 profile 中的默认值
+    3. 按照 SKILL.md 的工作流生成日历
+    4. 如果 profile 中有 output_dir，把日历写入该目录下的 YYYY-MM-DD.md 文件
+
+    结合《黄帝内经》四时养生、WHO/ACSM运动科学和本地天气。
+    包含：今日主题、今日宜、今日不宜、作息、饮食、运动、情志、内观五问、风险提醒、依据。
+    默认成都，用户指定其他城市则替换。
+    建议保守、可执行、不诊断。
 
 policy:
   allow_implicit_invocation: true

@@ -18,7 +18,13 @@ Use first-hand or near-first-hand sources whenever possible. If a source cannot 
      - 国家中医药管理局《中医养生保健服务规范（试行）》, published through 中国政府网: https://www.gov.cn/zhengce/zhengceku/2023-05/08/content_5754578.htm
    - Use this layer to define wellness education scope and avoid clinical diagnosis, treatment, prescriptions, and invasive operations.
 
-3. **Modern exercise science layer**
+3. **Brain science and neuroscience layer**
+   - Sleep-wake rhythm, light exposure, stress regulation, and neuroplasticity research.
+   - Public, reproducible sources preferred (e.g., peer-reviewed summaries, Huberman Lab-style open-access explanations).
+   - Use this layer for: circadian rhythm advice, light exposure timing, slow breathing for parasympathetic activation, and stress-management rationale.
+   - Do not overclaim: frame brain science findings as "research suggests" rather than proven medical facts.
+
+4. **Modern exercise science layer**
    - WHO physical activity and sedentary behavior guidance:
      - WHO 2020 Guidelines on physical activity and sedentary behaviour: https://www.who.int/publications/b/55518
      - WHO Physical activity fact sheet: https://www.who.int/news-room/fact-sheets/detail/physical-activity%E2%80%AF%E2%80%AF
@@ -27,7 +33,7 @@ Use first-hand or near-first-hand sources whenever possible. If a source cannot 
      - ACSM preparticipation health screening materials when risk, chronic disease, symptoms, or exercise intensity decisions matter.
    - Use this layer for weekly activity targets, sedentary breaks, intensity descriptions, gradual progression, and symptom-based caution.
 
-4. **Local meteorology layer for Chengdu**
+5. **Local meteorology layer for Chengdu**
    - Default location: Chengdu, Sichuan, unless the user says otherwise.
    - Official climate/weather entry points:
      - 中国气象局关于成都气候特点的说明: https://www.cma.gov.cn/ztbd/2023zt/20230712/2023071304/202307/t20230727_5673807.html

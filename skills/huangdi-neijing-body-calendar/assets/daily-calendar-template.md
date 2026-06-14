@@ -28,7 +28,7 @@ Use this template for full daily outputs. Keep it concise unless the user asks f
 ## 情志
 [1-2 条情绪调节或呼吸放松建议，避免心理治疗化承诺。]
 
-## 问诊自查
+## 内观五问
 1. [睡眠/精神]
 2. [食欲/消化]
 3. [疼痛/不适]
